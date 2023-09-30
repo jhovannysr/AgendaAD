@@ -9,6 +9,7 @@ import java.util.UUID;
    @NoArgsConstructor
    @RequiredArgsConstructor
    //Es funcional cuando lo pides te da el usuario,nombre, telefono y edad, Realmente deberia funcionar todo con solo poner @Data pero pongo el resto solo por si acaso.
+   //Si te va solo con el @Data borramos el resto de @
 public class Contacto {	   
 	   
 	public Contacto(UUID usuario, String nombre, String telefono, int edad) {
