@@ -12,16 +12,15 @@ import java.util.UUID;
    //Si te va solo con el @Data borramos el resto de @
 public class Contacto {	   
 	   
-	public Contacto(UUID usuario, String nombre, String telefono, int edad) {
+	public Contacto(String nombre, String telefono, int edad) {
 		super();
-		this.usuario = usuario;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.edad = edad;
 	}
 	@Getter
 	@Setter
-	private UUID usuario;
+	private final UUID uuid = UUID.randomUUID();
 	@Getter
 	@Setter
 	private String nombre;
