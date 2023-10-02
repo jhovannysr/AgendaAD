@@ -18,7 +18,12 @@ public class Menu {
         while (menu());
     }
 
-    public boolean crearUsuario() throws IOException {
+    /** (jhovanny)
+     * Pedir datos del nuevo contacto
+     * @return
+     * @throws IOException
+     */
+    public boolean crearContacto() throws IOException {
         IO.println("Introduzca el nombre");
         String nombre = IO.readStringNotBlank();
         IO.println("Introduzca el teléfono");
@@ -27,8 +32,9 @@ public class Menu {
         int edad = IO.readInt();
 
         Contacto contacto = new Contacto(nombre, telefono, edad);
-        return false;
+        return agenda.crearContacto(contacto);
     }
+
 
     public boolean borrarUsuario() throws IOException {
         IO.println("Seleccione el usuario que se borrará");
@@ -60,10 +66,10 @@ public class Menu {
 
         switch (opcion) {
             case 1:
-                if (crearUsuario()) {
-                    IO.println("Usuario creado");
+                if (crearContacto()) {
+                    IO.println("Contacto creado");
                 } else {
-                    IO.println("No se ha podido crear el usuario");
+                    IO.println("No se ha podido crear el contacto");
                 }
                 break;
 
