@@ -38,6 +38,11 @@ public class Menu {
     }
     
     public boolean listarUsuario() throws IOException {
+	    RandomAccessFile raf = new RandomAccessFile("./agendaCSV.csv", "rw");
+	    raf.seek(0);
+
+    while (raf.getFilePointer()<raf.length())
+        System.out.println(raf.readInt());
     	
     	return false;
     }
