@@ -42,6 +42,18 @@ public class Menu {
         // Aqui luego eliminamos
 		return false;
     }
+    public String buscarCodigo() throws IOException {
+    	IO.println("Buscando por codigo ? ");
+		String uuid = IO.readStringNotBlank();
+		Contacto c = agenda.read(uuid, null);
+		return c == null ? null : c.toString();		  
+    }
+    public String buscarNombre() throws IOException {
+    	IO.println("Buscando por nombre ? ");
+		String nombre = IO.readStringNotBlank();
+		Contacto c = agenda.read(nombre, null);
+		return c == null ? null : c.toString();	     
+    }
     
     public boolean listarUsuario() throws IOException {
     	
@@ -88,15 +100,21 @@ public class Menu {
         		break;
 
             case 4:
-            	if(buscar()) {
-            		
-            	}
+            	String bc = buscarCodigo();
+    			if (bc == null) {
+    				IO.println("Codigo no encontrado");
+    			} else {
+    				IO.println(bc);
+    			}
         		break;
         		
             case 5:
-            	if(buscar()) {
-            		
-            	}
+            	String bn = buscarNombre();
+    			if (bn == null) {
+    				IO.println("Usuario no encontrado");
+    			} else {
+    				IO.println(bn);
+    			}
         		break;
 
         		
@@ -110,3 +128,4 @@ public class Menu {
         return true;
     }
 }
+
