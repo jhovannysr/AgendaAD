@@ -98,7 +98,7 @@ public class Menu {
                 break;
                 
             case 3:
-		listarUsuario()
+		agenda.listarUsuarios()
         		break;
 
             case 4:
