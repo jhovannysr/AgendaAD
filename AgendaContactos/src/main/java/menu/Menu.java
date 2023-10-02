@@ -1,6 +1,9 @@
 package menu;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import agendaController.Agenda;
 import classes.Contacto;
@@ -37,9 +40,23 @@ public class Menu {
 		return false;
     }
     
-    public boolean listarUsuario() throws IOException {
-	    RandomAccessFile raf = new RandomAccessFile("./agendaCSV.csv", "rw");
-	    raf.seek(0);
+    public void listarUsuarios() throws IOException {
+        String archivoCSV = "./agendaCSV.csv";
+        String linea;
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+            while ((linea = br.readLine()) != null) {
+                // Dividir la línea en campos utilizando una coma como delimitador
+                String[] campos = linea.split(",");
+                
+                // Mostrar o almacenar los campos según sea necesario
+                for (String campo : campos) {
+                    System.out.print(campo + " ");
+                }
+                System.out.println(); // Salto de línea para la siguiente fila
+            }
+        }
+    }
 
     while (raf.getFilePointer()<raf.length())
         System.out.println(raf.readInt());
