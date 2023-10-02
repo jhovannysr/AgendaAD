@@ -98,9 +98,7 @@ public class Menu {
                 break;
                 
             case 3:
-            	if(listarUsuario()) {
-            		
-            	}
+		listarUsuario()
         		break;
 
             case 4:
