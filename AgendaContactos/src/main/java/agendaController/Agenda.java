@@ -76,23 +76,26 @@ public class Agenda {
 		file.writeBytes(registro);
 	}
 	
-      public void listarUsuarios() throws IOException {
-        String archivoCSV = "./agendaCSV.csv";
+public void listarUsuarios() throws IOException {
+    String archivoCSV = "./agendaCSV.csv";
+
+    try (RandomAccessFile raf = new RandomAccessFile(archivoCSV, "rw")) {
         String linea;
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
-            while ((linea = br.readLine()) != null) {
-                // Dividir la línea en campos utilizando una coma como delimitador
-                String[] campos = linea.split(",");
-                
-                // Mostrar o almacenar los campos según sea necesario
-                for (String campo : campos) {
-                    System.out.print(campo + " ");
+        while ((linea = raf.readLine()) != null) {
+            // Dividir la línea en campos utilizando una coma como delimitador
+            String[] campos = linea.split(",");
+            
+            // Mostrar o almacenar los campos separados por comas
+            for (int i = 0; i < campos.length; i++) {
+                System.out.print(campos[i]);
+                if (i < campos.length - 1) {
+                    System.out.print(", ");
                 }
-                System.out.println(); // Salto de línea para la siguiente fila
             }
+            System.out.println(); // Salto de línea para la siguiente fila
         }
     }
+}
 
 
 }
