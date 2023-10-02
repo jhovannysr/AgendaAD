@@ -1,9 +1,6 @@
 package menu;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 import agendaController.Agenda;
 import classes.Contacto;
@@ -40,8 +37,7 @@ public class Menu {
 		return false;
     }
     
-    while (raf.getFilePointer()<raf.length())
-        System.out.println(raf.readInt());
+    public boolean listarUsuario() throws IOException {
     	
     	return false;
     }
@@ -80,7 +76,9 @@ public class Menu {
                 break;
                 
             case 3:
-		agenda.listarUsuarios()
+            	if(listarUsuario()) {
+            		
+            	}
         		break;
 
             case 4:
