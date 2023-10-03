@@ -42,22 +42,24 @@ public class Menu {
         // Aqui luego eliminamos
 		return false;
     }
-    public String buscarCodigo() throws IOException {
-    	IO.println("Buscando por codigo ? ");
-		String uuid = IO.readStringNotBlank();
-		Contacto c = agenda.read(uuid, null);
-		return c == null ? null : c.toString();		  
-    }
-    public String buscarNombre() throws IOException {
-    	IO.println("Buscando por nombre ? ");
-		String nombre = IO.readStringNotBlank();
-		Contacto c = agenda.read(nombre, null);
-		return c == null ? null : c.toString();	     
+    public String consulta(String modo) throws IOException {
+    	if (modo.equals("nombre")) {
+    		IO.println("Buscando por nombre: ");
+    		String nombre = IO.readStringNotBlank();
+    		Contacto c = agenda.consultaPorNombre(nombre);
+    		return c == null ? null : c.toString();	
+		} 
+    	else if(modo.equals("codigo")){
+			IO.println("Buscando por codigo: ");
+			String uuid = IO.readStringNotBlank();
+			Contacto c = agenda.consultaPorCodigo(uuid);
+			return c == null ? null : c.toString();	
+		}    	
+    	return null;
     }
     
-    public boolean listarUsuario() throws IOException {
-    	
-    	return false;
+    public void listaContacto() throws IOException {
+    	agenda.lista();
     }
 
     public boolean buscar() throws IOException {
@@ -94,13 +96,11 @@ public class Menu {
                 break;
                 
             case 3:
-            	if(listarUsuario()) {
-            		
-            	}
+            	listaContacto();
         		break;
 
             case 4:
-            	String bc = buscarCodigo();
+            	String bc = consulta("codigo");
     			if (bc == null) {
     				IO.println("Codigo no encontrado");
     			} else {
@@ -109,9 +109,9 @@ public class Menu {
         		break;
         		
             case 5:
-            	String bn = buscarNombre();
+            	String bn = consulta("nombre");
     			if (bn == null) {
-    				IO.println("Usuario no encontrado");
+    				IO.println("Contacto no encontrado");
     			} else {
     				IO.println(bn);
     			}
@@ -128,4 +128,3 @@ public class Menu {
         return true;
     }
 }
-
